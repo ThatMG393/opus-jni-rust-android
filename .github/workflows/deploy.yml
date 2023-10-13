@@ -36,11 +36,11 @@ jobs:
             target: x86_64-pc-windows-msvc
 
           - build: mac-x86_64
-            os: macos-latest
+            os: macos-11
             target: x86_64-apple-darwin
 
           - build: mac-aarch64
-            os: macos-latest
+            os: macos-11
             target: aarch64-apple-darwin
 
 
