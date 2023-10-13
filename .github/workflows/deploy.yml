@@ -28,12 +28,12 @@ jobs:
 #            target: aarch64-unknown-linux-gnu
 #
           - build: win-x86
-            os: ubuntu-latest
-            target: i686-pc-windows-gnu
+            os: windows-latest
+            target: i686-pc-windows-msvc
 
           - build: win-x86_64
-            os: ubuntu-latest
-            target: x86_64-pc-windows-gnu
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
 #
 #          - build: mac-x86_64
 #            os: macos-latest
@@ -57,17 +57,19 @@ jobs:
         shell: bash
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
-      - name: Setup windows x86 env
-        if: matrix.build == 'win-x86'
-        run: |
-          CROSS_CONTAINER_OPTS="--platform linux/amd64"
-
       - name: Build
         uses: actions-rs/cargo@v1
         with:
-          use-cross: true
+#          use-cross: true
           command: build
-          args: --verbose --release --target ${{ matrix.target }} --manifest-path rust/Cargo.toml
+          args: --release --target ${{ matrix.target }} --manifest-path rust/Cargo.toml
+
+#      - name: Build
+#        uses: actions-rs/cargo@v1
+#        with:
+#          use-cross: true
+#          command: build
+#          args: --verbose --release --target ${{ matrix.target }} --manifest-path rust/Cargo.toml
 
       - name: Create platform dir
         shell: bash
