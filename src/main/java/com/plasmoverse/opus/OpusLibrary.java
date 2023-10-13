@@ -74,7 +74,7 @@ public final class OpusLibrary {
         if (isArm) {
             return "aarch64";
         } else if (is64bit) {
-            return "x86-64";
+            return "x86_64";
         } else {
             return "x86";
         }
