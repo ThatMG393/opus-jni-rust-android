@@ -15,33 +15,33 @@ jobs:
     strategy:
       matrix:
         include:
-          - build: linux-x86
-            os: ubuntu-latest
-            target: i686-unknown-linux-gnu
-
-          - build: linux-x86_64
-            os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-
-          - build: linux-aarch64
-            os: ubuntu-latest
-            target: aarch64-unknown-linux-gnu
-
+#          - build: linux-x86
+#            os: ubuntu-latest
+#            target: i686-unknown-linux-gnu
+#
+#          - build: linux-x86_64
+#            os: ubuntu-latest
+#            target: x86_64-unknown-linux-gnu
+#
+#          - build: linux-aarch64
+#            os: ubuntu-latest
+#            target: aarch64-unknown-linux-gnu
+#
           - build: win-x86
-            os: windows-latest
+            os: ubuntu-latest
             target: i686-pc-windows-gnu
 
           - build: win-x86_64
-            os: windows-latest
+            os: ubuntu-latest
             target: x86_64-pc-windows-gnu
-
-          - build: mac-x86_64
-            os: macos-latest
-            target: x86_64-apple-darwin
-
-          - build: mac-aarch64
-            os: macos-latest
-            target: aarch64-apple-darwin
+#
+#          - build: mac-x86_64
+#            os: macos-latest
+#            target: x86_64-apple-darwin
+#
+#          - build: mac-aarch64
+#            os: macos-latest
+#            target: aarch64-apple-darwin
 
 
     steps:
@@ -56,6 +56,11 @@ jobs:
       - name: Get the release version from the tag
         shell: bash
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Setup windows x86 env
+        if: matrix.build == 'win-x86'
+        run: |
+          CROSS_CONTAINER_OPTS="--platform linux/amd64"
 
       - name: Build
         uses: actions-rs/cargo@v1
