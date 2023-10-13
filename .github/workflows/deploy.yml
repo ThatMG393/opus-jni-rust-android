@@ -63,6 +63,8 @@ jobs:
 
       - name: Build
         uses: actions-rs/cargo@v1
+        env:
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
         with:
           command: build
           args: --release --target ${{ matrix.target }} --manifest-path rust/Cargo.toml
