@@ -59,6 +59,10 @@ jobs:
         if: matrix.build == 'linux-aarch64'
         run: sudo apt-get update && sudo apt-get install gcc-aarch64-linux-gnu -y
 
+      - name: Install gcc-i686-linux-gnu
+        if: matrix.build == 'linux-x86'
+        run: sudo apt-get update && sudo apt-get install gcc-i686-linux-gnu libc6-dev-i386 -y
+
       - name: Build
         uses: actions-rs/cargo@v1
         env:
@@ -76,7 +80,7 @@ jobs:
           mkdir "$dirname"
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
             mv "rust/target/${{ matrix.target }}/release/$binary_name.dll" "$dirname"
-          elif [ "${{ matrix.os }}" = "macos-latest" ]; then
+          elif [ "${{ matrix.os }}" = "macos-11" ]; then
             mv "rust/target/${{ matrix.target }}/release/lib$binary_name.dylib" "$dirname"
           else
             mv "rust/target/${{ matrix.target }}/release/lib$binary_name.so" "$dirname"
