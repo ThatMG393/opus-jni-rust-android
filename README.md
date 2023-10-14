@@ -14,7 +14,7 @@ dependencies {
 }
 ```
 
-### Simple usage
+### Usage
 Sample code from [OpusTest.java](https://github.com/plasmoapp/opus-jni-rust/blob/main/src/test/java/com/plasmoverse/opus/OpusTest.java)
 ```java
 /**
