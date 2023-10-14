@@ -46,7 +46,7 @@ public final class OpusDecoder {
     }
 
     /**
-     * Resets the audio decoder to its initial state.
+     * Resets the opus decoder to its initial state.
      */
     public void reset() {
         if (!isOpen()) return;
@@ -55,7 +55,7 @@ public final class OpusDecoder {
     }
 
     /**
-     * Closes the audio decoder, releasing any allocated resources.
+     * Closes the opus decoder, releasing any allocated resources.
      */
     public void close() {
         if (!isOpen()) return;
@@ -64,7 +64,7 @@ public final class OpusDecoder {
     }
 
     /**
-     * Checks if the audio decoder is currently open and ready for decoding.
+     * Checks if the opus decoder is currently open and ready for decoding.
      *
      * @return {@code true} if the decoder is open, {@code false} otherwise.
      */

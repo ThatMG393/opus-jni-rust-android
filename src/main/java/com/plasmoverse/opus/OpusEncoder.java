@@ -13,8 +13,8 @@ public final class OpusEncoder {
      * @param mode The opus application mode.
      * @throws IOException If an error occurs while extracting the native library.
      * @throws UnsatisfiedLinkError If the native libraries fail to load.
-     * @throws OpusException If the opus decoder fail to initialize.
-     * @return An instance of the opus decoder.
+     * @throws OpusException If the opus encoder fail to initialize.
+     * @return An instance of the opus encoder.
      */
     public static OpusEncoder create(int sampleRate, boolean stereo, int mtuSize, OpusMode mode) throws IOException, OpusException {
         OpusLibrary.load();
@@ -47,7 +47,7 @@ public final class OpusEncoder {
     }
 
     /**
-     * Resets the audio decoder to its initial state.
+     * Resets the opus encoder to its initial state.
      */
     public void reset() {
         if (!isOpen()) return;
@@ -56,7 +56,7 @@ public final class OpusEncoder {
     }
 
     /**
-     * Closes the audio decoder, releasing any allocated resources.
+     * Closes the opus encoder, releasing any allocated resources.
      */
     public void close() {
         if (!isOpen()) return;
@@ -91,9 +91,9 @@ public final class OpusEncoder {
     }
 
     /**
-     * Checks if the audio decoder is currently open and ready for decoding.
+     * Checks if the opus encoder is currently open and ready for decoding.
      *
-     * @return {@code true} if the decoder is open, {@code false} otherwise.
+     * @return {@code true} if the encoder is open, {@code false} otherwise.
      */
     public boolean isOpen() {
         return pointer > 0;
