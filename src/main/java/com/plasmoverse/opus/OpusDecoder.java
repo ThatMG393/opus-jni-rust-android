@@ -9,16 +9,16 @@ public final class OpusDecoder {
      *
      * @param sampleRate The sample rate of the audio data.
      * @param stereo {@code true} if the audio is in stereo format, {@code false} for mono.
-     * @param mtuSize Size of the buffer for processing audio.
+     * @param bufferSize Size of the buffer for processing audio.
      * @throws IOException If an error occurs while extracting the native library.
      * @throws UnsatisfiedLinkError If the native libraries fail to load.
      * @throws OpusException If the opus decoder fail to initialize.
      * @return An instance of the opus decoder.
      */
-    public static OpusDecoder create(int sampleRate, boolean stereo, int mtuSize) throws IOException, OpusException {
+    public static OpusDecoder create(int sampleRate, boolean stereo, int bufferSize) throws IOException, OpusException {
         OpusLibrary.load();
 
-        long pointer = createNative(sampleRate, stereo, mtuSize);
+        long pointer = createNative(sampleRate, stereo, bufferSize);
 
         return new OpusDecoder(pointer);
     }
