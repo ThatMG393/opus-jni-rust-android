@@ -127,7 +127,7 @@ jobs:
           arguments: publish -x test -Pversion=${{ env.VERSION }}
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: softprops/action-gh-release@v1
         with:
-          name: opus-jni-rust.jar
-          path: build/libs/opus-jni-rust-*.jar
+          files: |
+            build/libs/opus-jni-rust-${{ env.VERSION }}.jar
