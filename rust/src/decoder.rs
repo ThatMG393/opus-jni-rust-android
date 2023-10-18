@@ -13,9 +13,9 @@ pub extern "system" fn Java_com_plasmoverse_opus_OpusDecoder_createNative(
     _class: JClass,
     sample_rate: jint,
     stereo: jboolean,
-    buffer_size: jint
+    frame_size: jint
 ) -> jlong {
-    match create_decoder(sample_rate, stereo, buffer_size) {
+    match create_decoder(sample_rate, stereo, frame_size) {
         Ok(pointer) => pointer,
         Err(exception) => {
             env.throw_new_exception(exception);
@@ -69,7 +69,7 @@ pub unsafe extern "system" fn Java_com_plasmoverse_opus_OpusDecoder_decodeNative
 fn create_decoder(
     sample_rate: jint,
     stereo: jboolean,
-    buffer_size: jint
+    frame_size: jint
 ) -> Result<jlong, JavaException> {
     let channels = match stereo {
         1u8 => Channels::Stereo,
@@ -82,7 +82,7 @@ fn create_decoder(
     let decoder_container = DecoderContainer {
         decoder,
         channels,
-        buffer_size,
+        frame_size,
     };
 
     Ok(decoder_container.into_jlong_pointer())
@@ -137,7 +137,7 @@ unsafe fn decoder_decode<'local>(
             .err_into_opus_exception("Failed to convert byte array to rust vec".into())?
     };
 
-    let mut decoded = vec![0i16; container.buffer_size as usize * container.channels as usize];
+    let mut decoded = vec![0i16; container.frame_size as usize * container.channels as usize];
 
     let result = container.decoder.decode(&encoded, &mut decoded, false)
         .err_into_opus_exception("Failed to decode audio".into())?;

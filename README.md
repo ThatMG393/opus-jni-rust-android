@@ -23,7 +23,7 @@ Sample code from [OpusTest.java](https://github.com/plasmoapp/opus-jni-rust/blob
 short[] rawSamples = new short[960];
 
 // Creates a new encoder in mono with 1024 mtu size and application mode VOIP
-OpusEncoder encoder = OpusEncoder.create(48_000, false, 960, OpusMode.VOIP);
+OpusEncoder encoder = OpusEncoder.create(48_000, false, 1024, OpusMode.VOIP);
 
 // Sets encoder bitrate to 50k
 encoder.setBitrate(50_000);
@@ -41,7 +41,7 @@ encoder.close();
  * Decoding
  */
 
-// Creates a new decoder in mono with 960 buffer size
+// Creates a new decoder in mono with 960 frame size
 OpusDecoder decoder = OpusDecoder.create(48_000, false, 960);
 
 // Decodes the encoded audio data into an audio samples

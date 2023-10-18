@@ -30,8 +30,7 @@ public final class OpusTest {
          * Decoding
          */
 
-        // Creates a new decoder in mono with 960 buffer size
-        // buffer_size should be frame_size * channels
+        // Creates a new decoder in mono with 960 frame size
         OpusDecoder decoder = OpusDecoder.create(48_000, false, 960);
 
         // Decodes the encoded audio data into an audio samples

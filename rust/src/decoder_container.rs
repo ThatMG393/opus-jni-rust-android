@@ -5,7 +5,7 @@ use crate::util::pointer::JavaPointers;
 pub struct DecoderContainer {
     pub decoder: Decoder,
     pub channels: Channels,
-    pub buffer_size: i32
+    pub frame_size: i32
 }
 
 impl JavaPointers<DecoderContainer> for DecoderContainer {
