@@ -172,7 +172,10 @@ unsafe fn encoder_encode<'local>(
         .err_into_opus_exception("Failed to get samples array length".into())?
         as usize;
 
-    let samples_vec = vec![0i16 as jshort; samples_length];
+    let mut samples_vec = vec![0i16 as jshort; samples_length];
+
+    env.get_short_array_region(samples, 0, &mut samples_vec)
+        .err_into_opus_exception("Failed to copy samples to rust vec".into())?;
 
     let result = container.encoder.encode_vec(&samples_vec, container.mtu_size as usize)
         .err_into_opus_exception("Failed to encode audio".into())?;
