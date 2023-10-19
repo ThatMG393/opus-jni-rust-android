@@ -1,5 +1,5 @@
 # opus-jni-rust
-Simple JNI wrapper for the [Opus](https://opus-codec.org/) using [Rust](https://www.rust-lang.org/) 🚀
+Simple JNI wrapper for the [opus-rs](https://github.com/SpaceManiac/opus-rs) using [jni-rs](https://github.com/jni-rs/jni-rs).
 
 ### Adding dependency to the project
 <img alt="version" src="https://img.shields.io/badge/dynamic/xml?label=%20&query=/metadata/versioning/versions/version[not(contains(text(),'%2B'))][last()]&url=https://repo.plasmoverse.com/releases/com/plasmoverse/opus-jni-rust/maven-metadata.xml">
