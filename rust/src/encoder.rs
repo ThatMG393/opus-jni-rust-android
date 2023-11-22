@@ -61,8 +61,12 @@ pub unsafe extern "system" fn Java_com_plasmoverse_opus_OpusEncoder_encodeNative
     match encoder_encode(&mut env, encoder, samples) {
         Ok(decoded) => decoded,
         Err(exception) => {
+            let result = env.new_byte_array(0)
+                .expect("Couldn't create java byte array");
+
             env.throw_new_exception(exception);
-            env.new_byte_array(0).expect("") // todo: ???
+
+            result
         }
     }
 }

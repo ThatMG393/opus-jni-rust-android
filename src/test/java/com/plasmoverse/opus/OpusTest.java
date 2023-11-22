@@ -2,6 +2,8 @@ package com.plasmoverse.opus;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public final class OpusTest {
 
     @Test
@@ -40,6 +42,32 @@ public final class OpusTest {
         decoder.reset();
 
         // Closes the decoder, releasing allocated resources
+        decoder.close();
+    }
+
+    @Test
+    public void encodeBadFrame() throws Exception {
+        short[] badFrame = new short[444];
+
+        OpusEncoder encoder = OpusEncoder.create(48_000, false, 960, OpusMode.VOIP);
+
+        assertThrows(OpusException.class, () -> {
+            encoder.encode(badFrame);
+        });
+
+        encoder.close();
+    }
+
+    @Test
+    public void decodeBadFrame() throws Exception {
+        byte[] badFrame = new byte[3000];
+
+        OpusDecoder decoder = OpusDecoder.create(48_000, false, 960);
+
+        assertThrows(OpusException.class, () -> {
+            decoder.decode(badFrame);
+        });
+
         decoder.close();
     }
 }
