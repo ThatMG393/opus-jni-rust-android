@@ -37,7 +37,6 @@ pub trait JavaExceptions {
 impl<'local> JavaExceptions for JNIEnv<'local> {
 
     fn throw_new_exception(&mut self, exception: JavaException) {
-        println!("{} {}", exception.class, exception.message);
         let _ = self.throw_new(exception.class, exception.message);
     }
 }
