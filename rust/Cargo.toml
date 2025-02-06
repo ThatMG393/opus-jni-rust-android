@@ -18,3 +18,6 @@ lto = true
 codegen-units = 1
 panic = "abort"
 strip = true
+
+[dependencies.opus]
+audiopus_sys = { git = "https://github.com/ThatMG393/audiopus_sys-android" }
