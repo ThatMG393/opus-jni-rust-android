@@ -20,4 +20,4 @@ panic = "abort"
 strip = true
 
 [dependencies.opus]
-audiopus_sys = { git = "https://github.com/ThatMG393/audiopus_sys-android" }
+audiopus_sys = { git = "https://github.com/Icemic/audiopus_sys", branch = "dev" }
