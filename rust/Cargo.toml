@@ -19,5 +19,5 @@ codegen-units = 1
 panic = "abort"
 strip = true
 
-[dependencies.opus]
+[patch.crates-io]
 audiopus_sys = { git = "https://github.com/Icemic/audiopus_sys", branch = "dev" }
