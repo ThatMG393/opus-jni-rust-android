@@ -95,7 +95,7 @@ jobs:
 
       - name: Publish to Maven
         continue-on-error: true
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/actions/setup-gradle@v3
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
