@@ -30,7 +30,7 @@ public final class OpusLibrary {
 
         InputStream source = OpusLibrary.class.getResourceAsStream(nativeLibraryPath);
         if (source == null) {
-            throw new IOException("Couldn't find the native library: " + nativeLibraryPath);
+            throw new IOException("Couldn't find the native library for " + platformFolder + ": " + nativeLibraryPath);
         }
 
         Path destination = temporaryDir.toPath().resolve(libraryName);
@@ -68,29 +68,35 @@ public final class OpusLibrary {
     private static String getPlatformArch() {
         String systemArch = System.getProperty("os.arch").toLowerCase();
 
-        boolean is64bit = systemArch.contains("64");
-        boolean isArm = systemArch.startsWith("aarch");
-
-        if (isArm) {
-            return "aarch64";
-        } else if (is64bit) {
-            return "x86_64";
-        } else {
-            return "x86";
+        switch (systemArch) {
+            case "i386":
+            case "i486":
+            case "i586":
+            case "i686":
+            case "x86":
+            case "x86_32":
+                return "x86";
+            case "amd64":
+            case "x86_64":
+            case "x86-64":
+                return "x64";
+            case "aarch64":
+                return "aarch64";
+            default:
+                return OS_ARCH;
         }
     }
 
     private static String getPlatformLibraryFileName(String library) {
-        String systemName = System.getProperty("os.name").toLowerCase();
-
-        if (systemName.contains("nux") || systemName.contains("nix")) {
-            return "lib" + library + ".so";
-        } else if (systemName.contains("mac")) {
-            return "lib" + library + ".dylib";
-        } else if (systemName.contains("windows")) {
-            return library + ".dll";
-        } else {
-            throw new IllegalStateException("System is not supported: " + systemName);
+        switch (getPlatformName()) {
+            case "linux":
+                return "lib" + library + ".so";
+            case "mac":
+                return "lib" + library + ".dylib";
+            case "windows":
+                return library + ".dll";
+            default:
+                throw new IllegalStateException("System is not supported: " + systemName);
         }
     }
 
