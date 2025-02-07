@@ -15,12 +15,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - build: linux-arm
+          - build: linux-aarch64
             target-triple: aarch64-linux-android
             target-simple: arm64-v8a
             target-cmake: armv8-a
 
-          - build: linux-aarch64
+          - build: linux-arm
             target-triple: armv7-linux-androideabi
             target-simple: armeabi-v7a
             target-cmake: armv7-a
