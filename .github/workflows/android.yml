@@ -37,15 +37,15 @@ jobs:
           packages: 'cmake;3.10.2.4988404'
 
       - name: Install ${{ matrix.target-triple }} toolchains
-        uses: dtolnay/rust-toolchain@nightly
+        uses: taiki-e/setup-cross-toolchain-action@v1
         with:
-          targets: ${{ matrix.target-triple }}
+          target: ${{ matrix.target-triple }}
 
-      - name: Install cargo-ndk & the toolchain (again)
-        run: |
-          cargo install cargo-ndk
-          rustup target install ${{ matrix.target-triple }}
-
+      - name: Install cargo-ndk
+        uses: taiki-e/cache-cargo-install-action@v2
+        with:
+          tool: cargo-ndk
+      
       - name: Build project
         run: |
           export CMAKE_TOOLCHAIN_FILE="$ANDROID_NDK/build/cmake/android.toolchain.cmake"
