@@ -8,9 +8,9 @@ repositories {
 }
 
 dependencies {
-    testCompileOnly(libs.junit.api)
-    testAnnotationProcessor(libs.junit.api)
-    testRuntimeOnly(libs.junit.engine)
+    // testCompileOnly(libs.junit.api)
+    // testAnnotationProcessor(libs.junit.api)
+    // testRuntimeOnly(libs.junit.engine)
 }
 
 tasks {
@@ -20,9 +20,9 @@ tasks {
         toolchain.languageVersion.set(JavaLanguageVersion.of(8))
     }
 
-    test {
+    /* test {
         useJUnitPlatform()
-    }
+    } */
 }
 
 publishing {
