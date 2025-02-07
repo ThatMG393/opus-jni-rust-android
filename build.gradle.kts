@@ -8,9 +8,9 @@ repositories {
 }
 
 dependencies {
-    // testCompileOnly(libs.junit.api)
-    // testAnnotationProcessor(libs.junit.api)
-    // testRuntimeOnly(libs.junit.engine)
+    testCompileOnly(libs.junit.api)
+    testAnnotationProcessor(libs.junit.api)
+    testRuntimeOnly(libs.junit.engine)
 }
 
 tasks {
