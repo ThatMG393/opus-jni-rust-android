@@ -37,14 +37,12 @@ jobs:
           packages: 'cmake;3.10.2.4988404'
 
       - name: Install ${{ matrix.target-triple }} toolchains
-        uses: taiki-e/setup-cross-toolchain-action@v1
-        with:
-          target: ${{ matrix.target-triple }}
+        run: |
+          rustup target add ${{ matrix.target-triple }}
 
       - name: Install cargo-ndk
-        uses: taiki-e/cache-cargo-install-action@v2
-        with:
-          tool: cargo-ndk
+        run: |
+          cargo install cargo-ndk
       
       - name: Build project
         run: |
